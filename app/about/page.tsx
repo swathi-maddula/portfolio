@@ -23,9 +23,9 @@ const skillCategories = [
     skills: [
       { name: 'Python', level: 95 },
       { name: 'Java', level: 85 },
-      { name: 'C++', level: 75 },
-      { name: 'JavaScript', level: 90 },
-      { name: 'TypeScript', level: 85 },
+      { name: 'Git', level: 80 },
+      { name: 'TypeScript', level: 60 },
+      { name: 'SQL', level: 85 },
     ],
   },
   {
@@ -38,7 +38,6 @@ const skillCategories = [
       { name: 'Matplotlib', level: 88 },
       { name: 'Seaborn', level: 85 },
       { name: 'Power BI', level: 82 },
-      { name: 'SQL', level: 88 },
     ],
   },
   {
@@ -62,18 +61,16 @@ const skillCategories = [
       { name: 'React', level: 88 },
       { name: 'Next.js', level: 85 },
       { name: 'Node.js', level: 82 },
-      { name: 'Tailwind CSS', level: 90 },
-      { name: 'REST APIs', level: 88 },
     ],
   },
 ];
 
 const education = [
   {
-    degree: 'B.Tech in Computer Science',
-    institution: 'University of Technology',
-    duration: '2021 - 2025',
-    location: 'India',
+    degree: 'B.Tech in Computer Science and Data Science',
+    institution: 'Swarnandhra College of Engineering and Technology, Narsapur',
+    duration: '2023 - 2027',
+    location: 'Andhra Pradesh, India',
     status: 'Final Year',
     gpa: '8.5 CGPA',
     coursework: [
@@ -88,10 +85,8 @@ const education = [
 ];
 
 const achievements = [
-  { value: '500+', label: 'LeetCode Problems Solved' },
-  { value: '10+', label: 'Open Source Contributions' },
-  { value: '5', label: 'Hackathons Participated' },
-  { value: '3', label: 'Research Papers' },
+  { value: '100', label: 'LeetCode Problems Solved' },
+  { value: '1+', label: 'Hackathons Participated' },
 ];
 
 function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
@@ -109,7 +104,9 @@ function SkillBar({ name, level, delay }: { name: string; level: number; delay: 
         <motion.span
           whileHover={{ scale: 1.2 }}
           className="text-xs text-cyan-400 group-hover:text-white transition-colors duration-300"
-        >{level}%</motion.span>
+        >
+          {level}%
+        </motion.span>
       </div>
       <div className="h-2 bg-white/5 rounded-full overflow-hidden group-hover:h-3 transition-all duration-300">
         <motion.div
@@ -136,29 +133,17 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-16"
+            className="text-center mb-20"
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ duration: 0.5, type: 'spring', bounce: 0.5 }}
-              className="w-32 h-32 mx-auto mb-8 rounded-2xl bg-gradient-to-br from-cyan-500 via-blue-600 to-purple-600 p-1"
-            >
-              <div className="w-full h-full rounded-xl bg-background flex items-center justify-center">
-                <span className="text-5xl font-bold text-gradient">SM</span>
-              </div>
-            </motion.div>
-
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-white">Maddula Swathi</span>
-              <span className="text-gradient"> Ganga Mani Ratnam</span>
+            <h1 className="mt-2 text-4xl md:text-5xl font-bold mb-3 leading-tight">
+              <span className="text-gradient">Maddula Swathi Ganga Mani Ratnam</span>
             </h1>
-            <p className="text-xl text-muted-foreground mb-2">
-              Software Developer | Data Scientist | AI/ML Engineer
+            <p className="text-lg sm:text-xl text-muted-foreground mb-3">
+              Software Developer | Data Science Student | AI/ML Enthusiast
             </p>
             <div className="flex items-center justify-center gap-2 text-muted-foreground">
               <MapPin className="w-4 h-4" />
-              <span>India</span>
+              <span>Andhra Pradesh, India</span>
             </div>
           </motion.div>
 
@@ -171,18 +156,13 @@ export default function AboutPage() {
             <h2 className="text-2xl font-bold text-white mb-6">About Me</h2>
             <div className="text-muted-foreground space-y-4 leading-relaxed">
               <p>
-                I am a passionate B.Tech Final Year student with a strong interest in Software Development,
-                Artificial Intelligence, Machine Learning, and Data Science. I enjoy solving real-world
-                problems through technology and building intelligent systems that create meaningful impact.
+                I am a final-year B.Tech Computer Science (Data Science) student passionate about Artificial Intelligence, Machine Learning, Data Analytics, and Software Development.
               </p>
               <p>
-                My expertise includes full-stack development, data analytics, machine learning model
-                development, and AI-powered applications. I continuously learn emerging technologies and
-                strive to create innovative solutions that bridge the gap between data and decision-making.
+                I have hands-on experience in building machine learning models, analyzing datasets, and developing full-stack applications through academic projects and internships. My experience as a Chegg Subject Matter Expert in Statistics & Probability strengthened my analytical and problem-solving abilities.
               </p>
               <p>
-                I am currently seeking internship and full-time opportunities where I can contribute my
-                skills and grow as a professional in the tech industry.
+                I am actively seeking opportunities in Data Science, AI/ML, and Software Development where I can apply my technical skills, learn from industry professionals, and contribute to impactful solutions.
               </p>
             </div>
           </motion.div>

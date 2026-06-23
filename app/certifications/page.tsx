@@ -1,159 +1,69 @@
 'use client';
 
-import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Award,
-  Brain,
   Database,
   Cloud,
   Code,
-  Monitor,
   Calendar,
-  ExternalLink,
   Shield,
   Star,
-  Filter,
 } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 
-const certifications = [
+type CertificationCategory = 'Development' | 'Data Science' | 'Cloud Computing';
+
+type Certification = {
+  title: string;
+  issuer: string;
+  year: string;
+  category: CertificationCategory;
+  icon: typeof Code;
+  color: string;
+  description: string;
+  date: string;
+  skills: string[];
+};
+
+const certifications: Certification[] = [
   {
-    id: 1,
-    title: 'Machine Learning Specialization',
-    issuer: 'Coursera - Stanford University',
-    category: 'AI & Machine Learning',
-    date: 'March 2024',
-    credential: 'ABC123XYZ',
-    icon: Brain,
-    color: 'from-pink-500 to-orange-500',
-    description: 'Comprehensive ML course covering supervised/unsupervised learning, neural networks, and best practices.',
-    skills: ['Machine Learning', 'Neural Networks', 'Deep Learning', 'Python'],
-    verifyUrl: '#',
-  },
-  {
-    id: 2,
-    title: 'Data Science Professional Certificate',
-    issuer: 'IBM - Coursera',
-    category: 'Data Science',
-    date: 'January 2024',
-    credential: 'DS2024IBM',
-    icon: Database,
-    color: 'from-purple-500 to-pink-600',
-    description: 'Professional certification covering data analysis, visualization, and machine learning techniques.',
-    skills: ['Data Analysis', 'Python', 'SQL', 'Data Visualization'],
-    verifyUrl: '#',
-  },
-  {
-    id: 3,
-    title: 'Deep Learning Specialization',
-    issuer: 'Coursera - DeepLearning.AI',
-    category: 'AI & Machine Learning',
-    date: 'November 2023',
-    credential: 'DL2023AI',
-    icon: Brain,
-    color: 'from-cyan-500 to-blue-600',
-    description: 'Advanced deep learning concepts including CNNs, RNNs, and sequence models.',
-    skills: ['Deep Learning', 'CNN', 'RNN', 'TensorFlow'],
-    verifyUrl: '#',
-  },
-  {
-    id: 4,
-    title: 'AWS Cloud Practitioner',
-    issuer: 'Amazon Web Services',
-    category: 'Cloud Computing',
-    date: 'September 2023',
-    credential: 'AWS-CP-2023',
-    icon: Cloud,
-    color: 'from-orange-500 to-amber-500',
-    description: 'Fundamental AWS cloud concepts including compute, storage, and networking.',
-    skills: ['AWS', 'Cloud Computing', 'EC2', 'S3', 'Lambda'],
-    verifyUrl: '#',
-  },
-  {
-    id: 5,
-    title: 'Python for Data Science',
-    issuer: 'DataCamp',
-    category: 'Data Science',
-    date: 'July 2023',
-    credential: 'PY2023DC',
+    title: 'MERN Stack Internship',
+    issuer: 'Smart Bridge',
+    year: '2026',
+    category: 'Development',
     icon: Code,
     color: 'from-green-500 to-emerald-600',
-    description: 'Comprehensive Python programming for data science applications.',
-    skills: ['Python', 'Pandas', 'NumPy', 'Matplotlib'],
-    verifyUrl: '#',
+    description: 'Hands-on internship covering MongoDB, Express.js, React.js, and Node.js.',
+    date: '2026',
+    skills: ['MongoDB', 'Express.js', 'React.js', 'Node.js']
   },
   {
-    id: 6,
-    title: 'TensorFlow Developer Certificate',
-    issuer: 'Google',
-    category: 'AI & Machine Learning',
-    date: 'May 2023',
-    credential: 'TF2023GOOGLE',
-    icon: Brain,
-    color: 'from-yellow-500 to-orange-500',
-    description: 'TensorFlow proficiency for building and deploying ML models.',
-    skills: ['TensorFlow', 'Keras', 'Neural Networks', 'Model Deployment'],
-    verifyUrl: '#',
-  },
-  {
-    id: 7,
-    title: 'SQL for Data Analysis',
-    issuer: 'Udemy',
+    title: 'TATA GenAI Powered Data Analytics',
+    issuer: 'Tata Group',
+    year: '2026',
     category: 'Data Science',
-    date: 'April 2023',
-    credential: 'SQL2023UD',
     icon: Database,
-    color: 'from-blue-500 to-cyan-500',
-    description: 'Advanced SQL techniques for data extraction and analysis.',
-    skills: ['SQL', 'PostgreSQL', 'Query Optimization', 'Data Analysis'],
-    verifyUrl: '#',
+    color: 'from-purple-500 to-pink-600',
+    description: 'GenAI-powered data analytics certification focused on business insights and applied analytics.',
+    date: '2026',
+    skills: ['GenAI', 'Data Analytics', 'Visualization', 'Business Insights']
   },
   {
-    id: 8,
-    title: 'React - The Complete Guide',
-    issuer: 'Udemy',
-    category: 'Programming',
-    date: 'February 2023',
-    credential: 'REACT2023UD',
-    icon: Monitor,
-    color: 'from-cyan-400 to-blue-500',
-    description: 'Complete React development including hooks, Redux, and Next.js.',
-    skills: ['React', 'Redux', 'Hooks', 'Next.js'],
-    verifyUrl: '#',
-  },
-  {
-    id: 9,
-    title: 'Natural Language Processing Specialization',
-    issuer: 'Coursera - DeepLearning.AI',
-    category: 'AI & Machine Learning',
-    date: 'December 2023',
-    credential: 'NLP2023AI',
-    icon: Brain,
-    color: 'from-violet-500 to-purple-600',
-    description: 'NLP techniques including attention models, transformers, and text processing.',
-    skills: ['NLP', 'Transformers', 'BERT', 'Text Classification'],
-    verifyUrl: '#',
-  },
-];
-
-const categories = [
-  { name: 'All', icon: Award },
-  { name: 'AI & Machine Learning', icon: Brain },
-  { name: 'Data Science', icon: Database },
-  { name: 'Cloud Computing', icon: Cloud },
-  { name: 'Programming', icon: Code },
+    title: 'ServiceNow Virtual Internship',
+    issuer: 'ServiceNow',
+    year: '2026',
+    category: 'Cloud Computing',
+    icon: Cloud,
+    color: 'from-cyan-500 to-blue-600',
+    description: 'Virtual internship focused on the ServiceNow platform, workflow automation, and enterprise tooling.',
+    date: '2026',
+    skills: ['ServiceNow', 'Workflow Automation', 'Platform Basics', 'Enterprise Tools']
+  }
 ];
 
 export default function CertificationsPage() {
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
-
-  const filteredCerts = certifications.filter(
-    (cert) => selectedCategory === 'All' || cert.category === selectedCategory
-  );
-
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -176,40 +86,16 @@ export default function CertificationsPage() {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-3 mb-12"
-          >
-            {categories.map((category) => (
-              <button
-                key={category.name}
-                onClick={() => setSelectedCategory(category.name)}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all flex items-center gap-2 ${
-                  selectedCategory === category.name
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20'
-                    : 'glass text-muted-foreground hover:text-white border border-white/10 hover:border-cyan-500/30'
-                }`}
-              >
-                <category.icon className="w-4 h-4" />
-                {category.name}
-              </button>
-            ))}
-          </motion.div>
-
           <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence mode="popLayout">
-              {filteredCerts.map((cert, index) => (
+              {certifications.map((cert, index) => (
                 <motion.div
-                  key={cert.id}
+                  key={cert.title}
                   layout
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  onHoverStart={() => setHoveredId(cert.id)}
-                  onHoverEnd={() => setHoveredId(null)}
                   whileHover={{ y: -12, scale: 1.02, boxShadow: '0 20px 40px rgba(34, 211, 238, 0.15)' }}
                   className="group relative"
                 >
@@ -259,7 +145,6 @@ export default function CertificationsPage() {
                           <Calendar className="w-3 h-3" />
                           {cert.date}
                         </div>
-                        <div className="text-cyan-400">ID: {cert.credential}</div>
                       </div>
 
                       <div className="flex flex-wrap gap-2 mb-4">
@@ -278,16 +163,6 @@ export default function CertificationsPage() {
                         )}
                       </div>
 
-                      <motion.button
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: hoveredId === cert.id ? 1 : 0 }}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="w-full py-2 rounded-lg glass text-sm text-cyan-400 flex items-center justify-center gap-2 border border-cyan-500/20"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                        Verify Credential
-                      </motion.button>
                     </div>
                   </div>
                 </motion.div>

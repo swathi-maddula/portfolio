@@ -9,7 +9,6 @@ import {
   Send,
   Github,
   Linkedin,
-  Twitter,
   MessageSquare,
   CheckCircle,
   AlertCircle,
@@ -23,7 +22,7 @@ import Footer from '@/components/footer';
 const socialLinks = [
   {
     name: 'GitHub',
-    href: 'https://github.com/862006-swathi',
+    href: 'https://github.com/swathi-maddula',
     icon: Github,
     color: 'hover:bg-gray-600',
   },
@@ -32,12 +31,6 @@ const socialLinks = [
     href: 'https://www.linkedin.com/in/swathi-maddula',
     icon: Linkedin,
     color: 'hover:bg-blue-600',
-  },
-  {
-    name: 'Twitter',
-    href: '#',
-    icon: Twitter,
-    color: 'hover:bg-sky-500',
   },
 ];
 
@@ -132,7 +125,7 @@ export default function ContactPage() {
                   </motion.a>
 
                   <motion.a
-                    href="tel:+919876543210"
+                    href="tel:+919398982047"
                     whileHover={{ x: 10, scale: 1.02, boxShadow: '0 10px 30px rgba(168, 85, 247, 0.15)' }}
                     whileTap={{ scale: 0.98 }}
                     className="flex items-center gap-4 p-4 rounded-xl glass hover:border-purple-500/50 transition-all group cursor-pointer"
@@ -147,7 +140,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm text-muted-foreground">Phone</p>
                       <p className="text-white group-hover:text-purple-400 transition-colors duration-300">
-                        +91 98765 43210
+                        +91 93989 82047
                       </p>
                     </div>
                   </motion.a>
@@ -198,7 +191,7 @@ export default function ContactPage() {
               >
                 <h3 className="text-lg font-semibold text-white mb-4">Open To</h3>
                 <div className="space-y-3">
-                  {['Full-time Positions', 'Internship Opportunities', 'Freelance Projects', 'Research Collaborations'].map((item) => (
+                  {['Full-time Positions', 'Internship Opportunities', 'Freelance Projects',].map((item) => (
                     <div key={item} className="flex items-center gap-2">
                       <div className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600" />
                       <span className="text-sm text-muted-foreground">{item}</span>

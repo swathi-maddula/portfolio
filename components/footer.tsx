@@ -14,7 +14,6 @@ const quickLinks = [
 const resourceLinks = [
   { href: '/certifications', label: 'Certifications' },
   { href: '/resume', label: 'Resume' },
-  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -40,8 +39,8 @@ export default function Footer() {
                 <Code2 className="w-5 h-5 text-white" />
               </div>
               <span className="text-lg font-bold tracking-tight">
-                <span className="text-white">Swathi</span>
-                <span className="text-gradient">.dev</span>
+                <span className="text-gradient">Swathi</span>
+                <span className="text-gradient">-Portfolio</span>
               </span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-md leading-relaxed">
@@ -100,9 +99,7 @@ export default function Footer() {
 
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground flex items-center gap-1">
-            <span>2024 Maddula Swathi Ganga Mani Ratnam. Made with</span>
-            <Heart className="w-3 h-3 text-pink-500 fill-pink-500" />
-            <span>using Next.js</span>
+            <span>2026 Swathi Ganga Mani Ratnam. Built with Next.js & TypeScript </span>
           </p>
           <motion.button
             onClick={scrollToTop}

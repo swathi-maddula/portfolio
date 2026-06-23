@@ -16,78 +16,72 @@ import {
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
 
-const experiences = [
+type ExperienceType = 'internship' | 'research' | 'hackathon' | 'freelance';
+
+type Experience = {
+  title: string;
+  type: ExperienceType;
+  company: string;
+  duration: string;
+  location: string;
+  status: 'current' | 'completed';
+  description: string;
+  achievements: string[];
+  technologies: string[];
+};
+
+const experiences: Experience[] = [
   {
-    type: 'internship',
-    title: 'Software Development Intern',
-    company: 'Tech Innovations Inc.',
-    location: 'Remote',
-    duration: 'May 2024 - July 2024',
-    description: 'Developed and maintained web applications using React and Node.js. Collaborated with cross-functional teams to implement new features and optimize performance.',
-    achievements: [
-      'Built 3 new features for the main product',
-      'Improved application performance by 25%',
-      'Participated in code reviews and Agile ceremonies',
-      'Gained experience with CI/CD pipelines',
-    ],
-    technologies: ['React', 'Node.js', 'TypeScript', 'PostgreSQL', 'Docker'],
-    status: 'completed',
-  },
-  {
-    type: 'internship',
-    title: 'Data Science Intern',
-    company: 'Analytics Pro',
-    location: 'Hyderabad, India',
-    duration: 'Jan 2024 - Apr 2024',
-    description: 'Worked on data analysis projects, building predictive models and creating insightful visualizations for business stakeholders.',
-    achievements: [
-      'Developed 2 ML models for customer segmentation',
-      'Created automated reporting dashboards',
-      'Processed and analyzed 100K+ data records',
-      'Presented findings to senior management',
-    ],
-    technologies: ['Python', 'Pandas', 'Scikit-Learn', 'Power BI', 'SQL'],
-    status: 'completed',
-  },
-  {
+    title: 'Subject Matter Expert - Statistics & Probability',
     type: 'research',
-    title: 'Research Assistant',
-    company: 'University Research Lab',
-    location: 'India',
-    duration: 'Aug 2023 - Dec 2023',
-    description: 'Conducted research on machine learning applications in healthcare. Co-authored research papers and presented findings at academic conferences.',
-    achievements: [
-      'Co-authored 2 research papers',
-      'Developed novel ML pipeline for medical imaging',
-      'Presented research at 2 conferences',
-      'Achieved 92% accuracy on prediction tasks',
-    ],
-    technologies: ['Python', 'TensorFlow', 'OpenCV', 'NLP', 'Deep Learning'],
+    company: "Chegg India",
+    duration: "2025 - 2026",
+    location: 'Remote',
     status: 'completed',
+    description:
+      'Solved 100+ university-level Statistics and Probability problems for global learners while meeting strict deadlines.',
+    achievements: [
+      'Applied concepts including Bayesian Inference, Hypothesis Testing, Regression Analysis, and Probability Distributions.',
+      'Maintained high-quality analytical solutions for global learners.',
+      'Delivered consistent work under strict deadlines.'
+    ],
+    technologies: ['Statistics', 'Probability', 'Bayesian Inference', 'Regression Analysis']
   },
   {
-    type: 'hackathon',
-    title: 'Hackathon Winner - Smart India Hackathon',
-    company: 'Ministry of Education',
-    location: 'India',
-    duration: 'Dec 2023',
-    description: 'Led a team of 4 to develop an AI-powered solution for educational challenges. Won first place among 100+ participating teams.',
-    achievements: [
-      'Led team of 4 developers',
-      'Built solution in 36 hours',
-      'Won first place nationally',
-      'Solution selected for implementation',
-    ],
-    technologies: ['React', 'Python', 'OpenAI API', 'MongoDB'],
+    title: 'MERN Stack Intern',
+    type: 'internship',
+    company: "Smart Bridge",
+    duration: "6months",
+    location: 'Remote',
     status: 'completed',
-  },
+    description:
+      'Completed hands-on training in MongoDB, Express.js, React.js, and Node.js while building full-stack applications.',
+    achievements: [
+      'Developed full-stack web applications using modern JavaScript technologies.',
+      'Worked with REST APIs, frontend development, and database integration.',
+      'Gained practical experience in Git, GitHub, and collaborative development workflows.'
+    ],
+    technologies: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'REST APIs']
+  }
 ];
 
 const timelineEvents = [
-  { year: '2024', events: ['Software Dev Intern', 'Data Science Intern', 'Hackathon Winner'] },
-  { year: '2023', events: ['Research Assistant', 'Started B.Tech Final Year', '5 Certifications'] },
-  { year: '2022', events: ['Major Projects', 'Online Courses', 'Open Source Contributions'] },
-  { year: '2021', events: ['Started B.Tech', 'Learned Programming', 'First Projects'] },
+  {
+    year: '2025 - 2026',
+    events: [
+      'Subject Matter Expert - Statistics & Probability at Chegg India',
+      'Solved 100+ university-level problems',
+      'Applied Bayesian Inference, Hypothesis Testing, and Regression Analysis'
+    ]
+  },
+  {
+    year: '6 Months',
+    events: [
+      'MERN Stack Intern at Smart Bridge',
+      'Built full-stack web applications with MongoDB, Express.js, React.js, and Node.js',
+      'Worked with REST APIs, database integration, and Git/GitHub workflows'
+    ]
+  }
 ];
 
 function ExperienceCard({ experience, index }: { experience: typeof experiences[0]; index: number }) {
@@ -97,7 +91,7 @@ function ExperienceCard({ experience, index }: { experience: typeof experiences[
     hackathon: Rocket,
     freelance: Users,
   };
-  const Icon = typeIcons[experience.type as keyof typeof typeIcons] || Briefcase;
+  const Icon = typeIcons[experience.type] || Briefcase;
 
   const typeColors = {
     internship: 'from-cyan-500 to-blue-600',
@@ -116,7 +110,7 @@ function ExperienceCard({ experience, index }: { experience: typeof experiences[
       className="glass-card p-6 md:p-8 ml-8 md:ml-0"
     >
       <div className="flex items-start gap-4">
-        <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${typeColors[experience.type as keyof typeof typeColors] || 'from-cyan-500 to-blue-600'} flex items-center justify-center shrink-0`}>
+        <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${typeColors[experience.type] || 'from-cyan-500 to-blue-600'} flex items-center justify-center shrink-0`}>
           <Icon className="w-7 h-7 text-white" />
         </div>
         <div className="flex-1">
@@ -225,7 +219,7 @@ export default function ExperiencePage() {
 
             <div className="space-y-8">
               {experiences.map((experience, index) => (
-                <div key={experience.title} className="relative">
+                <div key={`${experience.title}-${index}`} className="relative">
                   <div className="absolute left-0 md:left-1/2 top-8 w-4 h-4 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 -translate-x-1/2 shadow-lg shadow-cyan-500/30" />
 
                   <div className={`grid md:grid-cols-2 gap-8 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>

@@ -14,7 +14,6 @@ const navLinks = [
   { href: '/experience', label: 'Experience' },
   { href: '/certifications', label: 'Certifications' },
   { href: '/resume', label: 'Resume' },
-  { href: '/blog', label: 'Blog' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -65,8 +64,8 @@ export default function Navigation() {
                 <Code2 className="w-5 h-5 text-white" />
               </motion.div>
               <span className="text-lg font-bold tracking-tight group-hover:scale-105 transition-transform">
-                <span className="text-white">Swathi</span>
-                <span className="text-gradient">.dev</span>
+                <span className="text-gradient">Swathi</span>
+                <span className="text-gradient">-Portfolio</span>
               </span>
             </Link>
 

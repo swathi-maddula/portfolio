@@ -23,9 +23,9 @@ import Footer from '@/components/footer';
 
 const personalInfo = {
   name: 'Maddula Swathi Ganga Mani Ratnam',
-  title: 'Software Developer | Data Scientist | AI/ML Engineer',
+  title: 'Software Developer | Data Science Student | AI/ML Enthusiast  ',
   email: 'swathimaddula55@gmail.com',
-  location: 'India',
+  location: 'Andhra Pradesh, India',
   linkedin: 'https://www.linkedin.com/in/swathi-maddula',
   github: 'https://github.com/862006-swathi',
 };
@@ -33,42 +33,42 @@ const personalInfo = {
 const education = [
   {
     degree: 'B.Tech in Computer Science and Data Science',
-    institution: 'Swarnandhra College of Engineering and Technology',
+    institution: 'Swarnandhra College of Engineering and Technology, Narsapur',
     duration: '2023 - 2027',
+    location: 'Andhra Pradesh, India',
     gpa: '8.5 CGPA',
-    highlights: ['Data Structures', 'Machine Learning', 'AI', 'Database Systems'],
+    highlights: ['Data Structures & Algorithms', 'Machine Learning', 'Artificial Intelligence', 'Database Management Systems'],
   },
 ];
 
 const experience = [
   {
-    title: 'Software Development Intern',
-    company: 'Tech Innovations Inc.',
-    duration: 'May 2024 - July 2024',
+    title: 'Subject Matter Expert - Statistics & Probability',
+    company: 'Chegg India',
+    duration: '2025 - 2026',
     highlights: [
-      'Developed web applications using React and Node.js',
-      'Improved application performance by 25%',
-      'Collaborated in Agile environment',
+      'Solved 100+ university-level Statistics and Probability problems for global learners.',
+      'Applied Bayesian Inference, Hypothesis Testing, Regression Analysis, and Probability Distributions.',
+      'Maintained high-quality analytical solutions while meeting strict deadlines.',
     ],
   },
   {
-    title: 'Data Science Intern',
-    company: 'Analytics Pro',
-    duration: 'Jan 2024 - Apr 2024',
+    title: 'MERN Stack Intern',
+    company: 'Smart Bridge',
+    duration: '6 months',
     highlights: [
-      'Built ML models for customer segmentation',
-      'Created automated reporting dashboards',
-      'Processed 100K+ data records',
+      'Completed hands-on training in MongoDB, Express.js, React.js, and Node.js.',
+      'Developed full-stack web applications using modern JavaScript technologies.',
+      'Worked with REST APIs, frontend development, and database integration.',
     ],
   },
 ];
 
 const skills = {
-  'Programming Languages': ['Python', 'Java', 'C++', 'JavaScript', 'TypeScript', 'SQL'],
+  'Programming Languages': ['Python', 'Java', 'Git', 'TypeScript', 'SQL'],
+  'Data Science': ['Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Power BI'],
   'AI & Machine Learning': ['Scikit-Learn', 'TensorFlow', 'PyTorch', 'NLP', 'Deep Learning', 'Computer Vision'],
-  'Data Science': ['Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Power BI', 'Excel'],
-  'Development': ['React', 'Next.js', 'Node.js', 'Tailwind CSS', 'REST APIs', 'Git'],
-  'Cloud & Tools': ['AWS', 'Docker', 'MongoDB', 'PostgreSQL', 'VS Code', 'Jupyter'],
+  'Development': ['React', 'Next.js', 'Node.js'],
 };
 
 const projects = [
@@ -90,10 +90,9 @@ const projects = [
 ];
 
 const certifications = [
-  'Machine Learning Specialization - Stanford University',
-  'Deep Learning Specialization - DeepLearning.AI',
-  'AWS Cloud Practitioner',
-  'TensorFlow Developer Certificate - Google',
+  'MERN Stack Internship - Smart Bridge (2026)',
+  'TATA GenAI Powered Data Analytics - Tata Group (2026)',
+  'ServiceNow Virtual Internship - ServiceNow (2026)',
 ];
 
 export default function ResumePage() {
@@ -117,14 +116,16 @@ export default function ResumePage() {
               A comprehensive overview of my professional experience, skills, and qualifications.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <motion.button
+              <motion.a
+                href="/resume.pdf"
+                download
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-medium text-white flex items-center gap-2"
               >
                 <Download className="w-5 h-5" />
                 Download PDF
-              </motion.button>
+              </motion.a>
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

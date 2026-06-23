@@ -4,8 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
-  Download,
-  Eye,
   Github,
   Linkedin,
   Mail,
@@ -25,15 +23,15 @@ import Footer from '@/components/footer';
 
 const typingTexts = [
   'Software Developer',
-  'Data Scientist',
-  'AI/ML Engineer',
+  'Data Science Student',
+  'AI/ML Enthusiast',
 ];
 
 const stats = [
-  { value: 25, suffix: '+', label: 'Projects Completed', icon: Folder },
-  { value: 15, suffix: '+', label: 'Technologies Mastered', icon: Code },
-  { value: 10, suffix: '+', label: 'AI/ML Models Built', icon: Brain },
-  { value: 8, suffix: '+', label: 'Certifications Earned', icon: Award },
+  { value: 2, suffix: '+', label: 'Projects Completed', icon: Folder },
+  { value: 100, suffix: '+', label: 'Chegg Solutions Deivered', icon: Brain },
+  { value: 2, suffix: '+', label: 'Internships Completed', icon: Brain },
+  { value: 6, suffix: '+', label: 'Certifications Earned', icon: Award },
 ];
 
 const featuredProjects = [
@@ -278,16 +276,6 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
               </motion.button>
             </Link>
-            <Link href="/resume">
-              <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 0 20px rgba(34, 211, 238, 0.2)' }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 rounded-xl font-medium glass btn-glow flex items-center gap-2 text-white border border-white/10 hover:border-cyan-500/50 transition-all duration-300"
-              >
-                <Download className="w-4 h-4 group-hover:animate-bounce" />
-                Download Resume
-              </motion.button>
-            </Link>
             <Link href="/contact">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -481,28 +469,6 @@ export default function Home() {
                         {tag}
                       </span>
                     ))}
-                  </div>
-                </div>
-                <div className="px-6 pb-6">
-                  <div className="flex gap-3">
-                    <Link href={`/projects#${project.title.toLowerCase().replace(/\s/g, '-')}`}>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-2 px-4 py-2 text-sm text-cyan-400 hover:text-cyan-300 transition-colors"
-                      >
-                        <Eye className="w-4 h-4" />
-                        View Details
-                      </motion.button>
-                    </Link>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground hover:text-white transition-colors"
-                    >
-                      <Github className="w-4 h-4" />
-                      Code
-                    </motion.button>
                   </div>
                 </div>
               </motion.div>
