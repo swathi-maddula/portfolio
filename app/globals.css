@@ -73,7 +73,12 @@
 
 @layer components {
   .glass {
-    @apply bg-white/5 backdrop-blur-xl border border-white/10;
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 transition-all duration-300;
+  }
+
+  .glass:hover {
+    transform: translateY(-4px);
+    @apply border-cyan-500/30 shadow-[0_0_20px_rgba(34,211,238,0.12)];
   }
 
   .glass-card {
@@ -81,7 +86,8 @@
   }
 
   .glass-card:hover {
-    @apply border-cyan-500/30 shadow-[0_0_30px_rgba(34,211,238,0.1)];
+    transform: translateY(-8px);
+    @apply border-cyan-500/30 shadow-[0_0_30px_rgba(34,211,238,0.15)];
   }
 
   .neon-border {
@@ -108,6 +114,10 @@
     @apply relative overflow-hidden transition-all duration-300;
   }
 
+  .btn-glow:hover {
+    transform: translateY(-2px);
+  }
+
   .btn-glow::before {
     content: '';
     @apply absolute inset-0 bg-gradient-to-r from-cyan-500/0 via-cyan-500/20 to-cyan-500/0 translate-x-[-100%] transition-transform duration-500;
@@ -115,6 +125,18 @@
 
   .btn-glow:hover::before {
     @apply translate-x-[100%];
+  }
+
+  button,
+  a,
+  input,
+  textarea,
+  select {
+    @apply transition-colors duration-200 ease-out;
+  }
+
+  button:hover {
+    transform: translateY(-1px);
   }
 
   .grid-pattern {

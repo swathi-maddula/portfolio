@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
@@ -17,6 +18,8 @@ import {
   Zap,
   ChevronRight,
   Star,
+  Briefcase,
+  GraduationCap,
 } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
@@ -56,6 +59,54 @@ const featuredProjects = [
     gradient: 'from-pink-500 to-orange-500',
     icon: Sparkles,
   },
+];
+
+const aboutHighlights = [
+  'Final-year B.Tech student in Computer Science and Data Science',
+  'Interested in AI/ML, analytics, and software engineering',
+  'Building practical projects with real-world impact',
+];
+
+const skillCategories = [
+  {
+    title: 'Programming Languages',
+    skills: ['Python', 'SQL', 'Basic Java'],
+  },
+  {
+    title: 'Web Technologies',
+    skills: ['HTML5', 'CSS3', 'JavaScript', 'Flask'],
+  },
+  {
+    title: 'Databases',
+    skills: ['PostgreSQL', 'MySQL'],
+  },
+  {
+    title: 'Developer Tools',
+    skills: ['Git', 'GitHub'],
+  },
+  {
+    title: 'Core Concepts',
+    skills: ['Object-Oriented Programming', 'Data Structures & Algorithms'],
+  },
+];
+
+const experienceHighlights = [
+  {
+    title: 'Subject Matter Expert - Statistics & Probability',
+    company: 'Chegg India',
+    details: 'Solved 100+ university-level problems and strengthened analytical problem solving.',
+  },
+  {
+    title: 'MERN Stack Intern',
+    company: 'Smart Bridge',
+    details: 'Worked on full-stack development using modern JavaScript and database integration.',
+  },
+];
+
+const certificationHighlights = [
+  'TATA GenAI Powered Data Analytics',
+  'MERN Stack Internship',
+  'ServiceNow Virtual Internship',
 ];
 
 function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
@@ -223,7 +274,7 @@ export default function Home() {
         <div className="absolute top-1/3 left-0 right-0 h-px animate-glow-line" />
         <div className="absolute top-2/3 left-0 right-0 h-px animate-glow-line" style={{ animationDelay: '1.5s' }} />
 
-        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
+        <div className="relative z-10 max-w-5xl mx-auto px-4 text-center lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -234,27 +285,41 @@ export default function Home() {
             <span className="text-sm text-muted-foreground">B.Tech Final Year Student</span>
           </motion.div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
-          >
-            <span className="block text-white mb-2">Maddula Swathi Ganga Mani Ratnam</span>
-            <span className="block text-2xl md:text-3xl lg:text-4xl font-normal text-muted-foreground">
-              <TypewriterText />
-            </span>
-          </motion.h1>
+          <div className="flex flex-col items-center gap-8 lg:flex-row-reverse lg:items-start lg:justify-center">
+            <div className="w-48 h-48 rounded-full border border-white/10 overflow-hidden bg-white/5 glass-card">
+              <Image
+                src="/images/swa_photo.jpeg"
+                alt="Swathi Maddula"
+                width={192}
+                height={192}
+                className="h-full w-full object-cover"
+              />
+            </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed"
-          >
-            Building intelligent solutions through software engineering, machine learning,
-            and data-driven innovation.
-          </motion.p>
+            <div className="max-w-3xl">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
+              >
+                <span className="block text-white mb-2">Maddula Swathi Ganga Mani Ratnam</span>
+                <span className="block text-2xl md:text-3xl lg:text-4xl font-normal text-muted-foreground">
+                  <TypewriterText />
+                </span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed"
+              >
+                Building intelligent solutions through software engineering, machine learning,
+                and data-driven innovation.
+              </motion.p>
+            </div>
+          </div>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -295,9 +360,9 @@ export default function Home() {
             className="flex items-center justify-center gap-6"
           >
             {[
-              { href: 'https://github.com/862006-swathi', icon: Github, label: 'GitHub' },
+              { href: 'https://github.com/swathimaddula', icon: Github, label: 'GitHub' },
               { href: 'https://www.linkedin.com/in/swathi-maddula', icon: Linkedin, label: 'LinkedIn' },
-              { href: 'mailto:swathimaddula55@gmail.com', icon: Mail, label: 'Email' },
+              { href: 'mailto:swathimaddula95@gmail.com', icon: Mail, label: 'Email' },
             ].map((social, index) => (
               <motion.a
                 key={social.label}
@@ -343,53 +408,120 @@ export default function Home() {
         <div className="absolute bottom-1/4 right-0 w-64 h-64 rounded-full bg-gradient-to-br from-purple-500/10 to-transparent blur-3xl" />
         <div className="absolute inset-0 hex-pattern opacity-20" />
         <div className="max-w-7xl mx-auto relative">
-          <motion.h2
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="text-3xl md:text-4xl font-bold text-center mb-16"
+            className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6 mb-16"
           >
-            <span className="text-white">Quick</span>
-            <span className="text-gradient"> Stats</span>
-          </motion.h2>
+            <div className="glass-card p-8 md:p-10">
+              <div className="flex items-center gap-2 text-cyan-400 mb-4">
+                <Sparkles className="w-4 h-4" />
+                <span className="text-sm font-medium">About Me</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">A developer building practical, data-driven solutions</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                I am a final-year B.Tech Computer Science (Data Science) student passionate about Artificial Intelligence, Machine Learning, Data Analytics, and Software Development.
+              </p>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                I have hands-on experience in building machine learning models, analyzing datasets, and developing full-stack applications through academic projects and internships.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                I am actively seeking opportunities in Data Science, AI/ML, and Software Development where I can apply my technical skills and contribute to impactful solutions.
+              </p>
+              <div className="flex flex-wrap gap-2 mt-6">
+                {aboutHighlights.map((item) => (
+                  <span key={item} className="px-3 py-2 rounded-full border border-white/10 bg-white/5 text-sm text-muted-foreground">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                whileHover={{ y: -10, scale: 1.05, boxShadow: '0 20px 40px rgba(34, 211, 238, 0.15)' }}
-                className="glass-card p-6 text-center group cursor-pointer"
-              >
-                <motion.div
-                  whileHover={{ rotate: 360, scale: 1.1 }}
-                  transition={{ duration: 0.5 }}
-                  className={`w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center bg-gradient-to-br ${
-                    index % 4 === 0
-                      ? 'from-cyan-500 to-blue-600'
-                      : index % 4 === 1
-                        ? 'from-purple-500 to-pink-600'
-                        : index % 4 === 2
-                          ? 'from-pink-500 to-orange-500'
-                          : 'from-green-500 to-emerald-600'
-                  } shadow-lg`}
-                >
-                  <stat.icon className="w-6 h-6 text-white" />
-                </motion.div>
-                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
-                <p className="text-sm text-muted-foreground mt-2">{stat.label}</p>
-              </motion.div>
-            ))}
+            <div className="glass-card p-8 md:p-10">
+              <div className="flex items-center gap-2 text-purple-400 mb-6">
+                <Code className="w-4 h-4" />
+                <span className="text-sm font-medium">Technical Skills</span>
+              </div>
+              <div className="space-y-4">
+                {skillCategories.map((category) => (
+                  <div key={category.title} className="rounded-xl border border-white/10 bg-white/5 p-4">
+                    <h3 className="text-lg font-semibold text-white mb-3">{category.title}</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {category.skills.map((skill) => (
+                        <span key={skill} className="px-3 py-2 rounded-full text-sm border border-white/10 bg-background/40 text-muted-foreground">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-6 mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="glass-card p-8"
+            >
+              <div className="flex items-center gap-2 text-cyan-400 mb-6">
+                <Briefcase className="w-4 h-4" />
+                <span className="text-sm font-medium">Experience</span>
+              </div>
+              <div className="space-y-4">
+                {experienceHighlights.map((item) => (
+                  <div key={item.title} className="rounded-xl border border-white/10 bg-white/5 p-4">
+                    <h3 className="text-lg font-semibold text-white mb-1">{item.title}</h3>
+                    <p className="text-sm text-cyan-400 mb-2">{item.company}</p>
+                    <p className="text-sm text-muted-foreground">{item.details}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="glass-card p-8"
+            >
+              <div className="flex items-center gap-2 text-purple-400 mb-6">
+                <Award className="w-4 h-4" />
+                <span className="text-sm font-medium">Certifications</span>
+              </div>
+              <div className="space-y-3">
+                {certificationHighlights.map((item) => (
+                  <div key={item} className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                    <GraduationCap className="w-4 h-4 text-cyan-400" />
+                    <span className="text-white">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
 
-      <section className="py-20 px-4 relative">
-        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="glass-card p-8 md:p-10 mb-16"
+          >
+            <div className="flex items-center gap-2 text-cyan-400 mb-4">
+              <GraduationCap className="w-4 h-4" />
+              <span className="text-sm font-medium">Education</span>
+            </div>
+            <h3 className="text-2xl font-semibold text-white mb-2">B.Tech in Computer Science and Data Science</h3>
+            <p className="text-muted-foreground mb-2">Swarnandhra College of Engineering and Technology, Narsapur</p>
+            <p className="text-sm text-cyan-400">2023 - 2027 • Final Year • 8.5 CGPA</p>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

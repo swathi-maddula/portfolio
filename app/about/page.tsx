@@ -20,48 +20,31 @@ const skillCategories = [
     title: 'Programming Languages',
     icon: Code,
     color: 'from-cyan-500 to-blue-600',
-    skills: [
-      { name: 'Python', level: 95 },
-      { name: 'Java', level: 85 },
-      { name: 'Git', level: 80 },
-      { name: 'TypeScript', level: 60 },
-      { name: 'SQL', level: 85 },
-    ],
+    skills: ['Python', 'SQL', 'Basic Java'],
   },
   {
-    title: 'Data Science',
-    icon: Database,
-    color: 'from-purple-500 to-pink-600',
-    skills: [
-      { name: 'Pandas', level: 92 },
-      { name: 'NumPy', level: 90 },
-      { name: 'Matplotlib', level: 88 },
-      { name: 'Seaborn', level: 85 },
-      { name: 'Power BI', level: 82 },
-    ],
-  },
-  {
-    title: 'AI & Machine Learning',
-    icon: Brain,
-    color: 'from-pink-500 to-orange-500',
-    skills: [
-      { name: 'Scikit-Learn', level: 90 },
-      { name: 'TensorFlow', level: 85 },
-      { name: 'PyTorch', level: 80 },
-      { name: 'NLP', level: 82 },
-      { name: 'Deep Learning', level: 85 },
-      { name: 'Computer Vision', level: 78 },
-    ],
-  },
-  {
-    title: 'Development',
+    title: 'Web Technologies',
     icon: Monitor,
+    color: 'from-purple-500 to-pink-600',
+    skills: ['HTML5', 'CSS3', 'JavaScript', 'Flask'],
+  },
+  {
+    title: 'Databases',
+    icon: Database,
+    color: 'from-pink-500 to-orange-500',
+    skills: ['PostgreSQL', 'MySQL'],
+  },
+  {
+    title: 'Developer Tools',
+    icon: Brain,
     color: 'from-green-500 to-emerald-600',
-    skills: [
-      { name: 'React', level: 88 },
-      { name: 'Next.js', level: 85 },
-      { name: 'Node.js', level: 82 },
-    ],
+    skills: ['Git', 'GitHub'],
+  },
+  {
+    title: 'Core Concepts',
+    icon: GraduationCap,
+    color: 'from-blue-500 to-cyan-600',
+    skills: ['Object-Oriented Programming', 'Data Structures & Algorithms'],
   },
 ];
 
@@ -88,39 +71,6 @@ const achievements = [
   { value: '100', label: 'LeetCode Problems Solved' },
   { value: '1+', label: 'Hackathons Participated' },
 ];
-
-function SkillBar({ name, level, delay }: { name: string; level: number; delay: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay }}
-      whileHover={{ x: 5 }}
-      className="mb-4 group cursor-pointer"
-    >
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-sm text-muted-foreground group-hover:text-white transition-colors duration-300">{name}</span>
-        <motion.span
-          whileHover={{ scale: 1.2 }}
-          className="text-xs text-cyan-400 group-hover:text-white transition-colors duration-300"
-        >
-          {level}%
-        </motion.span>
-      </div>
-      <div className="h-2 bg-white/5 rounded-full overflow-hidden group-hover:h-3 transition-all duration-300">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
-          viewport={{ once: true }}
-          whileHover={{ boxShadow: '0 0 15px rgba(34, 211, 238, 0.5)' }}
-          transition={{ duration: 1, delay: delay + 0.2 }}
-          className="h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full group-hover:from-cyan-400 group-hover:to-purple-500 transition-all duration-300"
-        />
-      </div>
-    </motion.div>
-  );
-}
 
 export default function AboutPage() {
   return (
@@ -219,14 +169,16 @@ export default function AboutPage() {
                     </div>
                     <h3 className="text-lg font-semibold text-white">{category.title}</h3>
                   </div>
-                  {category.skills.map((skill, skillIndex) => (
-                    <SkillBar
-                      key={skill.name}
-                      name={skill.name}
-                      level={skill.level}
-                      delay={skillIndex * 0.05}
-                    />
-                  ))}
+                  <div className="flex flex-wrap gap-2">
+                    {category.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="px-3 py-2 rounded-full text-sm border border-white/10 bg-white/5 text-muted-foreground"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </motion.div>
               ))}
             </div>

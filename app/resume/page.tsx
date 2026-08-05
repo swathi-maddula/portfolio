@@ -24,10 +24,10 @@ import Footer from '@/components/footer';
 const personalInfo = {
   name: 'Maddula Swathi Ganga Mani Ratnam',
   title: 'Software Developer | Data Science Student | AI/ML Enthusiast  ',
-  email: 'swathimaddula55@gmail.com',
+  email: 'swathimaddula95@gmail.com',
   location: 'Andhra Pradesh, India',
   linkedin: 'https://www.linkedin.com/in/swathi-maddula',
-  github: 'https://github.com/862006-swathi',
+  github: 'https://github.com/swathimaddula',
 };
 
 const education = [
@@ -65,10 +65,11 @@ const experience = [
 ];
 
 const skills = {
-  'Programming Languages': ['Python', 'Java', 'Git', 'TypeScript', 'SQL'],
-  'Data Science': ['Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Power BI'],
-  'AI & Machine Learning': ['Scikit-Learn', 'TensorFlow', 'PyTorch', 'NLP', 'Deep Learning', 'Computer Vision'],
-  'Development': ['React', 'Next.js', 'Node.js'],
+  'Programming Languages': ['Python', 'SQL', 'Basic Java'],
+  'Web Technologies': ['HTML5', 'CSS3', 'JavaScript', 'Flask'],
+  'Databases': ['PostgreSQL', 'MySQL'],
+  'Developer Tools': ['Git', 'GitHub'],
+  'Core Concepts': ['Object-Oriented Programming', 'Data Structures & Algorithms'],
 };
 
 const projects = [
@@ -112,8 +113,11 @@ export default function ResumePage() {
               <span className="text-white">My</span>
               <span className="text-gradient"> Resume</span>
             </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-4">
               A comprehensive overview of my professional experience, skills, and qualifications.
+            </p>
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto mb-8">
+              Includes core strengths in Python, AI/ML, data analytics, and modern web development with React, Next.js, Node.js, and SQL.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.a
@@ -126,14 +130,17 @@ export default function ResumePage() {
                 <Download className="w-5 h-5" />
                 Download PDF
               </motion.a>
-              <motion.button
+              <motion.a
+                href={personalInfo.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="px-6 py-3 rounded-xl font-medium glass text-white flex items-center gap-2 border border-white/10"
               >
                 <ExternalLink className="w-5 h-5" />
                 View on LinkedIn
-              </motion.button>
+              </motion.a>
             </div>
           </motion.div>
 

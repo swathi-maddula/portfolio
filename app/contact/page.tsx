@@ -119,7 +119,7 @@ export default function ContactPage() {
                     <div>
                       <p className="text-sm text-muted-foreground">Email</p>
                       <p className="text-white group-hover:text-cyan-400 transition-colors duration-300">
-                        swathimaddula55@gmail.com
+                        swathimaddula95@gmail.com
                       </p>
                     </div>
                   </motion.a>
