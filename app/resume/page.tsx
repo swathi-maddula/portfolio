@@ -121,8 +121,8 @@ export default function ResumePage() {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <motion.a
-                href="/resume.pdf"
-                download
+                href="/Swathi_Maddula_Resume.pdf"
+                download="Swathi_Maddula_Resume.pdf"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-medium text-white flex items-center gap-2"

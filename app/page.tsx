@@ -20,6 +20,7 @@ import {
   Star,
   Briefcase,
   GraduationCap,
+  Download,
 } from 'lucide-react';
 import Navigation from '@/components/navigation';
 import Footer from '@/components/footer';
@@ -341,6 +342,20 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
               </motion.button>
             </Link>
+            <motion.a
+              href="/Swathi_Maddula_Resume.pdf"
+              download="Swathi_Maddula_Resume.pdf"
+              whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(34, 211, 238, 0.4)' }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-medium text-white overflow-hidden flex items-center gap-2"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                <Download className="w-4 h-4" />
+                Download Resume
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+            </motion.a>
             <Link href="/contact">
               <motion.button
                 whileHover={{ scale: 1.02 }}
