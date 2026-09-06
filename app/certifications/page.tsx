@@ -92,22 +92,30 @@ export default function CertificationsPage() {
                 <motion.div
                   key={cert.title}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  whileHover={{ y: -12, scale: 1.02, boxShadow: '0 20px 40px rgba(34, 211, 238, 0.15)' }}
-                  className="group relative"
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 30, scale: 0.9 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: index * 0.1, type: 'spring', bounce: 0.3 }}
+                  whileHover={{ y: -16, scale: 1.04, boxShadow: '0 30px 60px rgba(34, 211, 238, 0.25)' }}
+                  className="group relative transition-all duration-300"
                 >
                   <div className="glass-card overflow-hidden h-full flex flex-col">
-                    <div className={`h-32 bg-gradient-to-br ${cert.color} p-6 relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}>
+                    <div className={`h-32 bg-gradient-to-br ${cert.color} p-6 relative overflow-hidden`}>
                       <div className="absolute inset-0 opacity-20 grid-pattern" />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                      <motion.div 
+                        className="absolute inset-0 bg-black/20 group-hover:bg-black/5 transition-colors duration-300"
+                        whileHover={{ opacity: 0.5 }}
+                      />
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        whileHover={{ opacity: 1 }}
+                      />
                       <div className="relative z-10 flex items-start justify-between">
                         <motion.div
-                          whileHover={{ rotate: 15, scale: 1.1 }}
-                          transition={{ duration: 0.3 }}
-                          className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center group-hover:shadow-lg group-hover:shadow-white/20"
+                          whileHover={{ rotate: 360, scale: 1.15 }}
+                          transition={{ duration: 0.6, type: 'spring' }}
+                          className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center shadow-lg shadow-white/20 group-hover:shadow-2xl group-hover:shadow-white/40 transition-shadow duration-300"
                         >
                           <cert.icon className="w-7 h-7 text-white" />
                         </motion.div>
@@ -115,51 +123,82 @@ export default function CertificationsPage() {
                           {[...Array(5)].map((_, i) => (
                             <motion.div
                               key={i}
-                              initial={{ rotate: 0 }}
-                              whileHover={{ rotate: 180, scale: 1.2 }}
+                              initial={{ rotate: 0, scale: 0.8 }}
+                              whileInView={{ rotate: 0, scale: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: index * 0.1 + i * 0.05 }}
+                              whileHover={{ rotate: 180, scale: 1.3 }}
                             >
                               <Star key={i} className="w-3 h-3 text-yellow-300 fill-yellow-300" />
                             </motion.div>
                           ))}
                         </div>
                       </div>
-                      <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-white/10 blur-2xl group-hover:scale-150 transition-transform duration-500" />
+                      <motion.div 
+                        className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-white/10 blur-2xl"
+                        whileHover={{ scale: 180 }}
+                        transition={{ duration: 0.5 }}
+                      />
                     </div>
 
                     <div className="p-6 flex-1 flex flex-col relative">
                       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="flex items-center gap-2 mb-2 relative z-10">
+                      <motion.div 
+                        className="flex items-center gap-2 mb-2 relative z-10"
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 + 0.1 }}
+                      >
                         <Shield className="w-4 h-4 text-cyan-400" />
                         <span className="text-xs text-muted-foreground">{cert.category}</span>
-                      </div>
+                      </motion.div>
 
-                      <h3 className="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300 mb-2 relative z-10">
+                      <motion.h3 
+                        className="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300 mb-2 relative z-10"
+                        whileHover={{ x: 4 }}
+                      >
                         {cert.title}
-                      </h3>
+                      </motion.h3>
 
-                      <p className="text-sm text-muted-foreground mb-3 relative z-10">{cert.issuer}</p>
+                      <p className="text-sm text-muted-foreground mb-3 relative z-10 group-hover:text-muted-foreground/80 transition-colors">{cert.issuer}</p>
                       <p className="text-xs text-muted-foreground mb-4 flex-1 relative z-10">{cert.description}</p>
 
-                      <div className="flex items-center gap-4 text-xs text-muted-foreground mb-4 relative z-10">
+                      <motion.div 
+                        className="flex items-center gap-4 text-xs text-muted-foreground mb-4 relative z-10"
+                        whileHover={{ scale: 1.05 }}
+                      >
                         <div className="flex items-center gap-1 group-hover:text-cyan-400 transition-colors">
                           <Calendar className="w-3 h-3" />
                           {cert.date}
                         </div>
-                      </div>
+                      </motion.div>
 
                       <div className="flex flex-wrap gap-2 mb-4">
-                        {cert.skills.slice(0, 3).map((skill) => (
-                          <span
+                        {cert.skills.slice(0, 3).map((skill, skillIndex) => (
+                          <motion.span
                             key={skill}
-                            className="px-2 py-1 text-xs rounded-md bg-white/5 text-muted-foreground border border-white/10"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 + skillIndex * 0.05 }}
+                            whileHover={{ scale: 1.1, backgroundColor: 'rgba(34, 211, 238, 0.15)' }}
+                            className="px-2 py-1 text-xs rounded-md bg-white/5 text-muted-foreground border border-white/10 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 cursor-default relative z-10"
                           >
                             {skill}
-                          </span>
+                          </motion.span>
                         ))}
                         {cert.skills.length > 3 && (
-                          <span className="px-2 py-1 text-xs rounded-md bg-white/5 text-muted-foreground border border-white/10">
+                          <motion.span 
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 + 0.15 }}
+                            whileHover={{ scale: 1.08 }}
+                            className="px-2 py-1 text-xs rounded-md bg-white/5 text-muted-foreground border border-white/10 relative z-10"
+                          >
                             +{cert.skills.length - 3}
-                          </span>
+                          </motion.span>
                         )}
                       </div>
 

@@ -78,7 +78,7 @@ export default function Navigation() {
                     'px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 relative group',
                     pathname === link.href
                       ? 'text-cyan-400'
-                      : 'text-muted-foreground hover:text-white hover:bg-white/5'
+                      : 'text-muted-foreground hover:text-white'
                   )}
                 >
                   {link.label}
@@ -89,7 +89,12 @@ export default function Navigation() {
                       transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                     />
                   )}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 group-hover:w-full transition-all duration-300 rounded-full" />
+                  <motion.span 
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 rounded-full"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: '100%' }}
+                    transition={{ duration: 0.4, ease: 'easeInOut' }}
+                  />
                   <span className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-r from-cyan-500/5 to-purple-500/5" />
                 </Link>
               ))}
@@ -164,16 +169,21 @@ export default function Navigation() {
               <div className="mt-8 pt-6 border-t border-white/10">
                 <p className="text-xs text-muted-foreground mb-3 px-4">Connect</p>
                 <div className="flex gap-3 px-4">
-                  {socialLinks.map((social) => (
-                    <a
+                  {socialLinks.map((social, index) => (
+                    <motion.a
                       key={social.label}
                       href={social.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-10 h-10 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-cyan-400 transition-colors"
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ scale: 1.1, rotate: 10 }}
+                      whileTap={{ scale: 0.9 }}
+                      className="w-10 h-10 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-cyan-400 transition-colors duration-300"
                     >
                       <social.icon className="w-4 h-4" />
-                    </a>
+                    </motion.a>
                   ))}
                 </div>
               </div>

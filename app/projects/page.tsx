@@ -98,65 +98,98 @@ export default function ProjectsPage() {
                 <motion.div
                   key={project.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  whileHover={{ y: -12, scale: 1.02 }}
-                  className="group glass-card overflow-hidden cursor-pointer"
+                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 30, scale: 0.9 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 0.5, delay: index * 0.1, type: 'spring', bounce: 0.3 }}
+                  whileHover={{ y: -16, scale: 1.03, boxShadow: '0 30px 60px rgba(34, 211, 238, 0.25)' }}
+                  className="group glass-card overflow-hidden cursor-pointer transition-all duration-300"
                 >
                   <div
-                    className={`h-48 bg-gradient-to-br ${project.gradient} p-6 relative overflow-hidden group-hover:scale-105 transition-transform duration-500`}
+                    className={`h-48 bg-gradient-to-br ${project.gradient} p-6 relative overflow-hidden`}
                   >
                     <div className="absolute inset-0 opacity-20 grid-pattern" />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-300" />
+                    <motion.div 
+                      className="absolute inset-0 bg-black/20 group-hover:bg-black/5 transition-colors duration-300"
+                      whileHover={{ opacity: 0.5 }}
+                    />
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      whileHover={{ opacity: 1 }}
+                    />
                     <div className="relative z-10">
                       <motion.div
-                        whileHover={{ rotate: 15, scale: 1.1 }}
-                        transition={{ duration: 0.3 }}
-                        className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:shadow-lg group-hover:shadow-white/20"
+                        whileHover={{ rotate: 15, scale: 1.15 }}
+                        transition={{ duration: 0.4, type: 'spring' }}
+                        className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-4 shadow-lg shadow-white/20 group-hover:shadow-2xl group-hover:shadow-white/40 transition-shadow duration-300"
                       >
                         <project.icon className="w-7 h-7 text-white" />
                       </motion.div>
-                      <span className="px-3 py-1 rounded-full text-xs bg-white/20 backdrop-blur-sm text-white">
+                      <motion.span 
+                        initial={{ opacity: 0, y: 5 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 + index * 0.1 }}
+                        className="px-3 py-1 rounded-full text-xs bg-white/20 backdrop-blur-sm text-white"
+                      >
                         {project.category}
-                      </span>
+                      </motion.span>
                     </div>
-                    <div className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-white/10 blur-2xl group-hover:scale-150 transition-transform duration-500" />
+                    <motion.div 
+                      className="absolute -bottom-10 -right-10 w-40 h-40 rounded-full bg-white/10 blur-2xl"
+                      whileHover={{ scale: 180 }}
+                      transition={{ duration: 0.5 }}
+                    />
                   </div>
 
                   <div className="p-6 relative">
                     <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <h3 className="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300 mb-2">
+                    <motion.h3 
+                      className="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300 mb-2"
+                      whileHover={{ x: 4 }}
+                    >
                       {project.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                    </motion.h3>
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2 group-hover:text-muted-foreground/80 transition-colors">
                       {project.description}
                     </p>
 
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.slice(0, 3).map((tag) => (
+                      {project.tags.slice(0, 3).map((tag, tagIndex) => (
                         <motion.span
                           key={tag}
-                          whileHover={{ scale: 1.1 }}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: 0.3 + index * 0.1 + tagIndex * 0.05 }}
+                          whileHover={{ scale: 1.12, backgroundColor: 'rgba(34, 211, 238, 0.15)' }}
                           className="px-2 py-1 text-xs rounded-md bg-white/5 text-muted-foreground border border-white/10 hover:border-cyan-500/30 hover:text-cyan-400 transition-all cursor-default"
                         >
                           {tag}
                         </motion.span>
                       ))}
                       {project.tags.length > 3 && (
-                        <span className="px-2 py-1 text-xs rounded-md bg-white/5 text-muted-foreground border border-white/10">
+                        <motion.span 
+                          whileHover={{ scale: 1.08 }}
+                          className="px-2 py-1 text-xs rounded-md bg-white/5 text-muted-foreground border border-white/10"
+                        >
                           +{project.tags.length - 3}
-                        </span>
+                        </motion.span>
                       )}
                     </div>
 
                     <div className="grid grid-cols-3 gap-2 mb-4">
-                      {Object.entries(project.metrics).map(([key, value]) => (
-                        <div key={key} className="text-center group-hover:scale-105 transition-transform">
-                          <p className="text-sm font-semibold text-white">{value}</p>
+                      {Object.entries(project.metrics).map(([key, value], metricsIndex) => (
+                        <motion.div 
+                          key={key} 
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.4 + index * 0.1 + metricsIndex * 0.05 }}
+                          whileHover={{ scale: 1.08, y: -4 }}
+                          className="text-center transition-transform"
+                        >
+                          <p className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">{value}</p>
                           <p className="text-xs text-muted-foreground capitalize">{key}</p>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>

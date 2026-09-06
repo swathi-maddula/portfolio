@@ -102,68 +102,105 @@ function ExperienceCard({ experience, index }: { experience: typeof experiences[
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ y: -5 }}
-      className="glass-card p-6 md:p-8 ml-8 md:ml-0"
+      initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30, scale: 0.95 }}
+      whileInView={{ opacity: 1, x: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.5, delay: index * 0.1, type: 'spring', bounce: 0.3 }}
+      whileHover={{ y: -8, boxShadow: '0 20px 50px rgba(34, 211, 238, 0.2)' }}
+      className="glass-card p-6 md:p-8 ml-8 md:ml-0 group transition-all duration-300"
     >
       <div className="flex items-start gap-4">
-        <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${typeColors[experience.type] || 'from-cyan-500 to-blue-600'} flex items-center justify-center shrink-0`}>
+        <motion.div
+          whileHover={{ rotate: 360, scale: 1.12 }}
+          transition={{ duration: 0.6, type: 'spring' }}
+          className={`w-14 h-14 rounded-xl bg-gradient-to-br ${typeColors[experience.type] || 'from-cyan-500 to-blue-600'} flex items-center justify-center shrink-0 shadow-lg group-hover:shadow-2xl transition-shadow duration-300`}
+        >
           <Icon className="w-7 h-7 text-white" />
-        </div>
+        </motion.div>
         <div className="flex-1">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 mb-2">
             <div>
-              <h3 className="text-xl font-semibold text-white">{experience.title}</h3>
-              <div className="flex items-center gap-2 text-muted-foreground">
+              <motion.h3 
+                className="text-xl font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300"
+                whileHover={{ x: 4 }}
+              >
+                {experience.title}
+              </motion.h3>
+              <div className="flex items-center gap-2 text-muted-foreground group-hover:text-muted-foreground/90 transition-colors">
                 <Building className="w-4 h-4" />
                 <span>{experience.company}</span>
               </div>
             </div>
-            <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-              experience.status === 'current'
-                ? 'bg-green-500/20 text-green-400 border border-green-500/30'
-                : 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
-            }`}>
+            <motion.span
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: index * 0.1 + 0.2 }}
+              whileHover={{ scale: 1.1 }}
+              className={`px-3 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
+                experience.status === 'current'
+                  ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                  : 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
+              }`}
+            >
               {experience.status === 'current' ? 'Current' : 'Completed'}
-            </span>
+            </motion.span>
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-4">
-            <div className="flex items-center gap-1">
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-1"
+            >
               <Calendar className="w-4 h-4" />
               {experience.duration}
-            </div>
-            <div className="flex items-center gap-1">
+            </motion.div>
+            <motion.div 
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center gap-1"
+            >
               <MapPin className="w-4 h-4" />
               {experience.location}
-            </div>
+            </motion.div>
           </div>
 
-          <p className="text-muted-foreground mb-4">{experience.description}</p>
+          <p className="text-muted-foreground mb-4 group-hover:text-muted-foreground/90 transition-colors">{experience.description}</p>
 
           <div className="mb-4">
             <h4 className="text-sm font-medium text-white mb-2">Key Achievements</h4>
             <ul className="space-y-1">
               {experience.achievements.map((achievement, i) => (
-                <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                  <div className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0" />
+                <motion.li 
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 + i * 0.05 }}
+                  className="flex items-start gap-2 text-sm text-muted-foreground group-hover:text-muted-foreground/90 transition-colors"
+                >
+                  <motion.div 
+                    whileInView={{ scale: [0, 1.2, 1] }}
+                    transition={{ delay: index * 0.1 + i * 0.05 + 0.2 }}
+                    className="w-1.5 h-1.5 rounded-full bg-cyan-400 mt-2 shrink-0"
+                  />
                   {achievement}
-                </li>
+                </motion.li>
               ))}
             </ul>
           </div>
 
           <div className="flex flex-wrap gap-2">
-            {experience.technologies.map((tech) => (
-              <span
+            {experience.technologies.map((tech, techIndex) => (
+              <motion.span
                 key={tech}
-                className="px-2 py-1 text-xs rounded-md bg-white/5 text-muted-foreground border border-white/10"
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 + techIndex * 0.05 }}
+                whileHover={{ scale: 1.1, backgroundColor: 'rgba(34, 211, 238, 0.15)' }}
+                className="px-2 py-1 text-xs rounded-md bg-white/5 text-muted-foreground border border-white/10 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 cursor-default"
               >
                 {tech}
-              </span>
+              </motion.span>
             ))}
           </div>
         </div>

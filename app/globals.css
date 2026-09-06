@@ -458,3 +458,46 @@
   background: hsla(var(--neon-cyan), 0.3);
   color: white;
 }
+
+/* Accessibility: Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-float,
+  .animate-pulse,
+  .animate-spin,
+  .animate-spin-slow,
+  .animate-pulse-glow,
+  .animate-gradient,
+  .animate-shimmer,
+  .animate-orbit,
+  .animate-wave,
+  .animate-ripple,
+  .animate-morph,
+  .animate-float-rotate,
+  .animate-glow-line {
+    animation: none !important;
+  }
+
+  button:hover,
+  a:hover {
+    transform: none !important;
+  }
+
+  .glass:hover,
+  .glass-card:hover {
+    transform: none !important;
+  }
+
+  .hover-lift:hover,
+  .hover-scale:hover {
+    transform: none !important;
+  }
+}

@@ -287,7 +287,16 @@ export default function Home() {
           </motion.div>
 
           <div className="flex flex-col items-center gap-8 lg:flex-row-reverse lg:items-start lg:justify-center">
-            <div className="w-48 h-48 rounded-full border border-white/10 overflow-hidden bg-white/5 glass-card">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2, type: 'spring', bounce: 0.3 }}
+              whileHover={{ 
+                y: -8,
+                boxShadow: '0 25px 50px rgba(34, 211, 238, 0.3)'
+              }}
+              className="w-48 h-48 rounded-full border border-white/10 overflow-hidden bg-white/5 glass-card"
+            >
               <Image
                 src="/images/swa_photo.jpeg"
                 alt="Swathi Maddula"
@@ -295,7 +304,7 @@ export default function Home() {
                 height={192}
                 className="h-full w-full object-cover"
               />
-            </div>
+            </motion.div>
 
             <div className="max-w-3xl">
               <motion.h1
@@ -326,17 +335,23 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 flex-wrap"
           >
             <Link href="/projects">
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(34, 211, 238, 0.4)' }}
-                whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-medium text-white overflow-hidden"
+                whileHover={{ y: -3, boxShadow: '0 20px 40px rgba(34, 211, 238, 0.35)' }}
+                whileTap={{ scale: 0.95, y: 0 }}
+                className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-medium text-white overflow-hidden transition-all duration-300"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   View Projects
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                  <motion.span
+                    className="inline-block"
+                    whileHover={{ x: 4 }}
+                    transition={{ type: 'spring', bounce: 0.5 }}
+                  >
+                    <ArrowRight className="w-4 h-4" />
+                  </motion.span>
                 </span>
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
@@ -345,12 +360,17 @@ export default function Home() {
             <motion.a
               href="/Swathi_Maddula_Resume.pdf"
               download="Swathi_Maddula_Resume.pdf"
-              whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(34, 211, 238, 0.4)' }}
-              whileTap={{ scale: 0.95 }}
-              className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-medium text-white overflow-hidden flex items-center gap-2"
+              whileHover={{ y: -3, boxShadow: '0 20px 40px rgba(34, 211, 238, 0.35)' }}
+              whileTap={{ scale: 0.95, y: 0 }}
+              className="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-medium text-white overflow-hidden flex items-center gap-2 transition-all duration-300"
             >
               <span className="relative z-10 flex items-center gap-2">
-                <Download className="w-4 h-4" />
+                <motion.span
+                  animate={{ y: [0, -3, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <Download className="w-4 h-4" />
+                </motion.span>
                 Download Resume
               </span>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -358,9 +378,9 @@ export default function Home() {
             </motion.a>
             <Link href="/contact">
               <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="px-8 py-4 rounded-xl font-medium text-muted-foreground hover:text-white transition-colors flex items-center gap-2"
+                whileHover={{ y: -3, boxShadow: '0 10px 25px rgba(255, 255, 255, 0.1)' }}
+                whileTap={{ scale: 0.95, y: 0 }}
+                className="px-8 py-4 rounded-xl font-medium text-muted-foreground hover:text-white border border-white/10 hover:border-white/20 transition-all duration-300 flex items-center gap-2 glass"
               >
                 <Mail className="w-4 h-4" />
                 Contact Me
@@ -375,7 +395,7 @@ export default function Home() {
             className="flex items-center justify-center gap-6"
           >
             {[
-              { href: 'https://github.com/swathimaddula', icon: Github, label: 'GitHub' },
+              { href: 'https://github.com/swathi-maddula', icon: Github, label: 'GitHub' },
               { href: 'https://www.linkedin.com/in/swathi-maddula', icon: Linkedin, label: 'LinkedIn' },
               { href: 'mailto:swathimaddula95@gmail.com', icon: Mail, label: 'Email' },
             ].map((social, index) => (
@@ -384,14 +404,24 @@ export default function Home() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: 0.5 + index * 0.1 }}
-                whileHover={{ scale: 1.2, y: -5, rotate: 10 }}
+                initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.3, delay: 0.5 + index * 0.1, type: 'spring', bounce: 0.4 }}
+                whileHover={{ 
+                  scale: 1.15, 
+                  y: -8, 
+                  rotate: 8,
+                  boxShadow: '0 10px 25px rgba(34, 211, 238, 0.3)'
+                }}
                 whileTap={{ scale: 0.9 }}
-                className="w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-cyan-400 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/20"
+                className="w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-cyan-400 hover:border-cyan-500/50 transition-colors duration-300 group"
               >
-                <social.icon className="w-5 h-5" />
+                <motion.div
+                  whileHover={{ rotate: [0, -10, 10, 0] }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <social.icon className="w-5 h-5" />
+                </motion.div>
               </motion.a>
             ))}
           </motion.div>

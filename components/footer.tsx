@@ -48,15 +48,18 @@ export default function Footer() {
               and data-driven innovation. Passionate about creating impactful technology.
             </p>
             <div className="flex items-center gap-3 mt-6">
-              {socialLinks.map((social) => (
+              {socialLinks.map((social, index) => (
                 <motion.a
                   key={social.label}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-cyan-400 hover:border-cyan-500/30 transition-colors"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.05 }}
+                  whileHover={{ scale: 1.2, y: -6, rotate: 10, boxShadow: '0 10px 25px rgba(34, 211, 238, 0.3)' }}
+                  whileTap={{ scale: 0.9 }}
+                  className="w-10 h-10 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300"
                 >
                   <social.icon className="w-4 h-4" />
                 </motion.a>
@@ -67,14 +70,26 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-white mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              {quickLinks.map((link) => (
+              {quickLinks.map((link, index) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-cyan-400 transition-colors"
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 }}
                   >
-                    {link.label}
-                  </Link>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-cyan-400 transition-colors relative group inline-block"
+                    >
+                      {link.label}
+                      <motion.span
+                        className="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-cyan-400 to-blue-500"
+                        whileHover={{ width: '100%' }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </Link>
+                  </motion.div>
                 </li>
               ))}
             </ul>
@@ -83,14 +98,26 @@ export default function Footer() {
           <div>
             <h3 className="text-sm font-semibold text-white mb-4">Resources</h3>
             <ul className="space-y-2">
-              {resourceLinks.map((link) => (
+              {resourceLinks.map((link, index) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground hover:text-cyan-400 transition-colors"
+                  <motion.div
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05 + 0.15 }}
                   >
-                    {link.label}
-                  </Link>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted-foreground hover:text-cyan-400 transition-colors relative group inline-block"
+                    >
+                      {link.label}
+                      <motion.span
+                        className="absolute bottom-0 left-0 w-0 h-px bg-gradient-to-r from-cyan-400 to-blue-500"
+                        whileHover={{ width: '100%' }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </Link>
+                  </motion.div>
                 </li>
               ))}
             </ul>
@@ -103,11 +130,19 @@ export default function Footer() {
           </p>
           <motion.button
             onClick={scrollToTop}
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-10 h-10 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-cyan-400 hover:border-cyan-500/30 transition-colors"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.15, y: -4, boxShadow: '0 10px 30px rgba(34, 211, 238, 0.3)' }}
+            whileTap={{ scale: 0.9 }}
+            className="w-10 h-10 rounded-lg glass flex items-center justify-center text-muted-foreground hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 group"
           >
-            <ArrowUp className="w-4 h-4" />
+            <motion.span
+              animate={{ y: [0, -3, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="flex items-center justify-center"
+            >
+              <ArrowUp className="w-4 h-4" />
+            </motion.span>
           </motion.button>
         </div>
       </div>

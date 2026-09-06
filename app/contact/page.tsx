@@ -105,14 +105,17 @@ export default function ContactPage() {
                 <div className="space-y-4">
                   <motion.a
                     href="mailto:swathimaddula55@gmail.com"
-                    whileHover={{ x: 10, scale: 1.02, boxShadow: '0 10px 30px rgba(34, 211, 238, 0.15)' }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ x: 12, scale: 1.04, boxShadow: '0 15px 40px rgba(34, 211, 238, 0.25)' }}
+                    whileTap={{ scale: 0.96 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.1 }}
                     className="flex items-center gap-4 p-4 rounded-xl glass hover:border-cyan-500/50 transition-all group cursor-pointer"
                   >
                     <motion.div
-                      whileHover={{ rotate: 15, scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20"
+                      whileHover={{ rotate: 360, scale: 1.15 }}
+                      transition={{ duration: 0.6, type: 'spring' }}
+                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:shadow-2xl transition-shadow"
                     >
                       <Mail className="w-5 h-5 text-white" />
                     </motion.div>
@@ -126,14 +129,17 @@ export default function ContactPage() {
 
                   <motion.a
                     href="tel:+919398982047"
-                    whileHover={{ x: 10, scale: 1.02, boxShadow: '0 10px 30px rgba(168, 85, 247, 0.15)' }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ x: 12, scale: 1.04, boxShadow: '0 15px 40px rgba(168, 85, 247, 0.25)' }}
+                    whileTap={{ scale: 0.96 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
                     className="flex items-center gap-4 p-4 rounded-xl glass hover:border-purple-500/50 transition-all group cursor-pointer"
                   >
                     <motion.div
-                      whileHover={{ rotate: 15, scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg shadow-purple-500/20"
+                      whileHover={{ rotate: 360, scale: 1.15 }}
+                      transition={{ duration: 0.6, type: 'spring' }}
+                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:shadow-2xl transition-shadow"
                     >
                       <Phone className="w-5 h-5 text-white" />
                     </motion.div>
@@ -146,13 +152,16 @@ export default function ContactPage() {
                   </motion.a>
 
                   <motion.div
-                    whileHover={{ x: 10, scale: 1.02, boxShadow: '0 10px 30px rgba(236, 72, 153, 0.15)' }}
-                    className="flex items-center gap-4 p-4 rounded-xl glass group cursor-pointer"
+                    whileHover={{ x: 12, scale: 1.04, boxShadow: '0 15px 40px rgba(236, 72, 153, 0.25)' }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="flex items-center gap-4 p-4 rounded-xl glass group cursor-pointer transition-all"
                   >
                     <motion.div
-                      whileHover={{ rotate: 15, scale: 1.1 }}
-                      transition={{ duration: 0.3 }}
-                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center shadow-lg shadow-pink-500/20"
+                      whileHover={{ rotate: 360, scale: 1.15 }}
+                      transition={{ duration: 0.6, type: 'spring' }}
+                      className="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center shadow-lg shadow-pink-500/20 group-hover:shadow-2xl transition-shadow"
                     >
                       <MapPin className="w-5 h-5 text-white" />
                     </motion.div>
@@ -166,15 +175,18 @@ export default function ContactPage() {
                 <div className="mt-8">
                   <h3 className="text-sm font-medium text-muted-foreground mb-4">Connect on Social</h3>
                   <div className="flex gap-3">
-                    {socialLinks.map((social) => (
+                    {socialLinks.map((social, index) => (
                       <motion.a
                         key={social.name}
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        whileHover={{ scale: 1.2, y: -5, rotate: 10 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.4 + index * 0.1 }}
+                        whileHover={{ scale: 1.25, y: -8, rotate: 12, boxShadow: '0 10px 30px rgba(34, 211, 238, 0.3)' }}
                         whileTap={{ scale: 0.9 }}
-                        className={`w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-white transition-all ${social.color}`}
+                        className={`w-12 h-12 rounded-xl glass flex items-center justify-center text-muted-foreground hover:text-white transition-all duration-300 ${social.color}`}
                       >
                         <social.icon className="w-5 h-5" />
                       </motion.a>
@@ -212,78 +224,98 @@ export default function ContactPage() {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
-                    <div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1 }}
+                    >
                       <label className="block text-sm font-medium text-muted-foreground mb-2">
                         Your Name
                       </label>
-                      <div className="relative">
-                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                        <input
+                      <div className="relative group">
+                        <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-cyan-400 transition-colors duration-300" />
+                        <motion.input
                           type="text"
                           name="name"
                           value={formData.name}
                           onChange={handleChange}
                           required
                           placeholder="John Doe"
-                          className="w-full pl-12 pr-4 py-3 rounded-xl glass bg-transparent text-white placeholder-muted-foreground/50 border border-white/10 focus:border-cyan-500/50 focus:outline-none transition-colors"
+                          whileFocus={{ boxShadow: '0 0 20px rgba(34, 211, 238, 0.3)' }}
+                          className="w-full pl-12 pr-4 py-3 rounded-xl glass bg-transparent text-white placeholder-muted-foreground/50 border border-white/10 focus:border-cyan-500/50 focus:outline-none transition-all duration-300"
                         />
                       </div>
-                    </div>
-                    <div>
+                    </motion.div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.15 }}
+                    >
                       <label className="block text-sm font-medium text-muted-foreground mb-2">
                         Email Address
                       </label>
-                      <div className="relative">
-                        <AtSign className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                        <input
+                      <div className="relative group">
+                        <AtSign className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-cyan-400 transition-colors duration-300" />
+                        <motion.input
                           type="email"
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
                           required
                           placeholder="john@example.com"
-                          className="w-full pl-12 pr-4 py-3 rounded-xl glass bg-transparent text-white placeholder-muted-foreground/50 border border-white/10 focus:border-cyan-500/50 focus:outline-none transition-colors"
+                          whileFocus={{ boxShadow: '0 0 20px rgba(34, 211, 238, 0.3)' }}
+                          className="w-full pl-12 pr-4 py-3 rounded-xl glass bg-transparent text-white placeholder-muted-foreground/50 border border-white/10 focus:border-cyan-500/50 focus:outline-none transition-all duration-300"
                         />
                       </div>
-                    </div>
+                    </motion.div>
                   </div>
 
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
                     <label className="block text-sm font-medium text-muted-foreground mb-2">
                       Subject
                     </label>
-                    <div className="relative">
-                      <FileText className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                      <select
+                    <div className="relative group">
+                      <FileText className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-focus-within:text-cyan-400 transition-colors duration-300 pointer-events-none z-10" />
+                      <motion.select
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full pl-12 pr-4 py-3 rounded-xl glass bg-transparent text-white border border-white/10 focus:border-cyan-500/50 focus:outline-none transition-colors appearance-none"
+                        whileFocus={{ boxShadow: '0 0 20px rgba(34, 211, 238, 0.3)' }}
+                        className="w-full pl-12 pr-4 py-3 rounded-xl glass bg-transparent text-white border border-white/10 focus:border-cyan-500/50 focus:outline-none transition-all duration-300 appearance-none"
                       >
                         <option value="" className="bg-background">Select a subject</option>
                         <option value="job" className="bg-background">Job Opportunity</option>
                         <option value="internship" className="bg-background">Internship Inquiry</option>
                         <option value="project" className="bg-background">Project Collaboration</option>
                         <option value="other" className="bg-background">Other</option>
-                      </select>
+                      </motion.select>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.25 }}
+                  >
                     <label className="block text-sm font-medium text-muted-foreground mb-2">
                       Message
                     </label>
-                    <textarea
+                    <motion.textarea
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
                       rows={6}
                       placeholder="Tell me about your opportunity or project..."
-                      className="w-full px-4 py-3 rounded-xl glass bg-transparent text-white placeholder-muted-foreground/50 border border-white/10 focus:border-cyan-500/50 focus:outline-none transition-colors resize-none"
+                      whileFocus={{ boxShadow: '0 0 20px rgba(34, 211, 238, 0.3)' }}
+                      className="w-full px-4 py-3 rounded-xl glass bg-transparent text-white placeholder-muted-foreground/50 border border-white/10 focus:border-cyan-500/50 focus:outline-none transition-all duration-300 resize-none"
                     />
-                  </div>
+                  </motion.div>
 
                   {submitStatus === 'success' && (
                     <motion.div
@@ -310,19 +342,34 @@ export default function ContactPage() {
                   <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-medium text-white flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    whileHover={{ y: -3, scale: 1.02, boxShadow: '0 20px 50px rgba(34, 211, 238, 0.3)' }}
+                    whileTap={{ scale: 0.95, y: 0 }}
+                    className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl font-medium text-white flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 group relative overflow-hidden"
                   >
+                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
                     {isSubmitting ? (
                       <>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                        <motion.div
+                          animate={{ rotate: 360 }}
+                          transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                          className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                        />
                         Sending...
                       </>
                     ) : (
                       <>
-                        <Send className="w-5 h-5" />
-                        Send Message
+                        <motion.span
+                          whileHover={{ x: 4 }}
+                          transition={{ type: 'spring', bounce: 0.5 }}
+                          className="flex items-center gap-2 relative z-10"
+                        >
+                          <Send className="w-5 h-5" />
+                          Send Message
+                        </motion.span>
                       </>
                     )}
                   </motion.button>

@@ -155,28 +155,36 @@ export default function AboutPage() {
               {skillCategories.map((category, categoryIndex) => (
                 <motion.div
                   key={category.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 + categoryIndex * 0.1 }}
-                  whileHover={{ y: -5 }}
-                  className="glass-card p-6"
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: categoryIndex * 0.08, type: 'spring', bounce: 0.3 }}
+                  whileHover={{ y: -8, boxShadow: '0 20px 50px rgba(34, 211, 238, 0.2)' }}
+                  className="glass-card p-6 group cursor-pointer transition-all duration-300"
                 >
                   <div className="flex items-center gap-3 mb-6">
-                    <div
-                      className={`w-10 h-10 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center`}
+                    <motion.div
+                      whileHover={{ rotate: 360, scale: 1.15 }}
+                      transition={{ duration: 0.6, type: 'spring' }}
+                      className={`w-10 h-10 rounded-xl bg-gradient-to-br ${category.color} flex items-center justify-center shadow-lg group-hover:shadow-2xl transition-shadow duration-300`}
                     >
                       <category.icon className="w-5 h-5 text-white" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-white">{category.title}</h3>
+                    </motion.div>
+                    <h3 className="text-lg font-semibold text-white group-hover:text-cyan-400 transition-colors duration-300">{category.title}</h3>
                   </div>
                   <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill) => (
-                      <span
+                    {category.skills.map((skill, skillIndex) => (
+                      <motion.span
                         key={skill}
-                        className="px-3 py-2 rounded-full text-sm border border-white/10 bg-white/5 text-muted-foreground"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: categoryIndex * 0.08 + skillIndex * 0.03 }}
+                        whileHover={{ scale: 1.1, backgroundColor: 'rgba(34, 211, 238, 0.15)' }}
+                        className="px-3 py-2 rounded-full text-sm border border-white/10 bg-white/5 text-muted-foreground hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300"
                       >
                         {skill}
-                      </span>
+                      </motion.span>
                     ))}
                   </div>
                 </motion.div>
